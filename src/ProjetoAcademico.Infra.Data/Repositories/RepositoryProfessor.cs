@@ -1,4 +1,4 @@
-using ProjetoAcademico.Domain.Entities;
+﻿using ProjetoAcademico.Domain.Entities;
 using ProjetoAcademico.Domain.Interfaces.Repositories;
 using ProjetoAcademico.Infra.Data.Context;
 using ProjetoAcademico.Infra.Data.Repositories.Base;

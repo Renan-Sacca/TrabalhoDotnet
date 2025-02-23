@@ -1,4 +1,5 @@
-using ProjetoAcademico.Domain.Entities.Base;
+﻿using ProjetoAcademico.Domain.Entities.Base;
+using ProjetoAcademico.Domain.Enumerators;
 
 namespace ProjetoAcademico.Domain.Entities
 {
@@ -8,7 +9,7 @@ namespace ProjetoAcademico.Domain.Entities
         public string Biografia { get; private set; }
 
         public Professor(
-            string nome, 
+            string nome,
             string biografia)
         {
             Nome = nome;
@@ -16,7 +17,7 @@ namespace ProjetoAcademico.Domain.Entities
         }
 
         public void Atualizar(
-            string nome, 
+            string nome,
             string biografia)
         {
             Nome = nome;

@@ -2,24 +2,22 @@
 using Microsoft.EntityFrameworkCore;
 using ProjetoAcademico.Domain.Entities;
 using ProjetoAcademico.Infra.CrossCutting.NotificationPattern.DTOs;
+using ProjetoAcademico.Infra.Data.Configurations;
 
 namespace ProjetoAcademico.Infra.Data.Context
 {
-    public class ProjetoAcademicoContext : DbContext
+    public class ProjetoAcademicoContext(
+        DbContextOptions<ProjetoAcademicoContext> options) : DbContext(options)
     {
-        public ProjetoAcademicoContext(DbContextOptions<ProjetoAcademicoContext> options) 
-            : base(options)
-        {
-        }
-
         public DbSet<Curso> CursoSet { get; set; }
-        public DbSet<Professor> ProfessorSet { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Ignore<Notification>();
 
-            //modelBuilder.ApplyConfiguration(new CursoConfiguration()); // Mapeamento 1 a 1
+            modelBuilder.ApplyConfiguration(new CursoConfiguration()); // Mapeamento 1 a 1
+            modelBuilder.ApplyConfiguration(new ProfessorConfiguration());
+
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly()); // Mapeamento de forma geral
 
             base.OnModelCreating(modelBuilder);

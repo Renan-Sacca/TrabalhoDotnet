@@ -6,25 +6,22 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ProjetoAcademico.Infra.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class Inicial : Migration
+    public partial class TBProfessor : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "TB_Curso",
+                name: "TB_Professor",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Nome = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    Periodo = table.Column<string>(type: "varchar(5)", nullable: false),
-                    Descricao = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: true),
-                    CargaHoraria = table.Column<int>(type: "integer", nullable: false),
-                    QuantidadeMaximaAlunos = table.Column<int>(type: "integer", nullable: false)
+                    Biografia = table.Column<string>(type: "varchar(1000)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TB_Curso", x => x.Id);
+                    table.PrimaryKey("PK_TB_Professor", x => x.Id);
                 });
         }
 
@@ -32,7 +29,7 @@ namespace ProjetoAcademico.Infra.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "TB_Curso");
+                name: "TB_Professor");
         }
     }
 }

@@ -17,10 +17,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IServiceCurso, ServiceCurso>();
-builder.Services.AddScoped<IRepositoryCurso, RepositoryCurso>();
-
-// Adicionando serviços e repositórios para Professor
 builder.Services.AddScoped<IServiceProfessor, ServiceProfessor>();
+builder.Services.AddScoped<IRepositoryCurso, RepositoryCurso>();
 builder.Services.AddScoped<IRepositoryProfessor, RepositoryProfessor>();
 
 builder.Services.AddDbContext<ProjetoAcademicoContext>(options =>
@@ -46,35 +44,35 @@ app.UseCors(cors => cors
     .AllowAnyHeader());
 
 #region Rotas do Curso
-app.MapPost("/curso/adicionar", ([FromServices] IServiceCurso serviceCurso, CursoAdicionarDto cursoAdicionarDto) =>
+app.MapPost("/adicionar", ([FromServices] IServiceCurso serviceCurso, CursoAdicionarDto cursoAdicionarDto) =>
 {
     var response = serviceCurso.Adicionar(cursoAdicionarDto);
     return response.Sucesso ? Results.Created("created", response) : Results.BadRequest(response);
 })
 .WithTags("Curso");
 
-app.MapGet("/curso/listar", ([FromServices] IServiceCurso serviceCurso) =>
+app.MapGet("/listar", ([FromServices] IServiceCurso serviceCurso) =>
 {
     var response = serviceCurso.Listar();
     return Results.Ok(response);
 })
 .WithTags("Curso");
 
-app.MapGet("/curso/obter/{id:guid}", ([FromServices] IServiceCurso serviceCurso, Guid id) =>
+app.MapGet("/obter/{id:guid}", ([FromServices] IServiceCurso serviceCurso, Guid id) =>
 {
     var response = serviceCurso.Obter(id);
     return response.Sucesso ? Results.Ok(response) : Results.BadRequest(response);
 })
 .WithTags("Curso");
 
-app.MapPut("/curso/atualizar", ([FromServices] IServiceCurso serviceCurso, CursoAtualizarDto cursoAtualizarDto) =>
+app.MapPut("/atualizar", ([FromServices] IServiceCurso serviceCurso, CursoAtualizarDto cursoAtualizarDto) =>
 {
     var response = serviceCurso.Atualizar(cursoAtualizarDto);
     return response.Sucesso ? Results.Ok(response) : Results.BadRequest(response);
 })
 .WithTags("Curso");
 
-app.MapDelete("/curso/remover/{id:guid}", ([FromServices] IServiceCurso serviceCurso, Guid id) =>
+app.MapDelete("/remover/{id:guid}", ([FromServices] IServiceCurso serviceCurso, Guid id) =>
 {
     var response = serviceCurso.Remover(id);
     return response.Sucesso ? Results.Ok(response) : Results.BadRequest(response);

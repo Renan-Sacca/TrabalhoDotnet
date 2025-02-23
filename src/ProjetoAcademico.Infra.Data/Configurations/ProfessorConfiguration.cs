@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ProjetoAcademico.Domain.Entities;
 
@@ -12,11 +12,11 @@ namespace ProjetoAcademico.Infra.Data.Configurations
 
             builder.Property(p => p.Nome)
                 .IsRequired()
-                .HasMaxLength(100);
+                .HasMaxLength(50);
 
             builder.Property(p => p.Biografia)
-                .IsRequired(false)
-                .HasMaxLength(1000);
+                .IsRequired()
+                .HasColumnType("varchar(1000)");
 
             builder.ToTable("TB_Professor");
         }
